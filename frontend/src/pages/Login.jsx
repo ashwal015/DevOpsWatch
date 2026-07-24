@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import api, { setAuthToken } from "../api";
 
 function Login({ onLogin }) {
@@ -47,6 +47,9 @@ function Login({ onLogin }) {
                     Log In
                 </button>
             </form>
+            <p style={{ marginTop: 15 }}>
+                No account? <Link to="/register">Register</Link>
+            </p>
         </div>
     );
 }

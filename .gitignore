@@ -17,7 +17,7 @@ build/
 # --- FastAPI / Uvicorn ---
 *.sqlite3
 
-# --- Node / React (frontend, later) ---
+# --- Node / React (frontend) ---
 node_modules/
 frontend/build/
 frontend/dist/
@@ -25,11 +25,18 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# --- Terraform (infra, later) ---
+# --- Terraform / infra ---
 *.tfstate
-*.tfstate.backup
+*.tfstate.*
+*.tfvars
 .terraform/
 .terraform.lock.hcl
+crash.log
+crash.*.log
+
+# --- AWS ---
+.aws/
+*.pem
 
 # --- IDE / OS ---
 .vscode/
