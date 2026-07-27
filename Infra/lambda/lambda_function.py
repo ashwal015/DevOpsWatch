@@ -44,13 +44,12 @@ def determine_severity(alarm_name):
 def lambda_handler(event, context):
     record = event["Records"][0]["Sns"]
     raw_message = record["Message"]
-    subject = record.get("Subject", "CloudWatch Alarm Triggered")
+    subject = record.get("Subject") or "CloudWatch Alarm Triggered"
 
-    # Real CloudWatch alarms send a JSON message; manual test publishes are plain text
     try:
         parsed = json.loads(raw_message)
-        alarm_name = parsed.get("AlarmName", subject)
-        description = parsed.get("NewStateReason", raw_message)
+        alarm_name = parsed.get("AlarmName") or subject
+        description = parsed.get("NewStateReason") or raw_message
     except (json.JSONDecodeError, TypeError):
         alarm_name = subject
         description = raw_message
