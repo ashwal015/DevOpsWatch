@@ -17,3 +17,14 @@ variable "alert_email" {
   description = "Email to receive incident alerts"
   type        = string
 }
+variable "db_password" {
+  description = "PostgreSQL password"
+  type        = string
+  sensitive   = true
+}
+
+variable "secret_key" {
+  description = "JWT signing secret"
+  type        = string
+  sensitive   = true
+}

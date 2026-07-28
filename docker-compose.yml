@@ -3,7 +3,7 @@ services:
     image: postgres:16
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: SuperUser
+      POSTGRES_PASSWORD: ${DATABASE_URL_PASSWORD:-yourpassword}
       POSTGRES_DB: devopswatch
     ports:
       - "5432:5432"
@@ -15,8 +15,9 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DATABASE_URL: postgresql://postgres:SuperUser@db/devopswatch
-      SECRET_KEY: 391a832cbb836b8e700a26fadcb3726fc9e3780a1bdea439cc277bc939b33246
+      DATABASE_URL: ${DATABASE_URL}
+      SECRET_KEY: ${SECRET_KEY}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS}
     depends_on:
       - db
 
@@ -24,6 +25,8 @@ services:
     build: ./frontend
     ports:
       - "3000:80"
+    environment:
+      API_URL: ${API_URL}
     depends_on:
       - backend
 

@@ -17,11 +17,28 @@ resource "aws_instance" "app" {
 
   user_data = <<-EOF
               #!/bin/bash
+              set -e
               apt-get update -y
-              apt-get install -y docker.io docker-compose-plugin git
+              apt-get install -y docker.io docker-compose-v2 git curl
               systemctl enable docker
               systemctl start docker
               usermod -aG docker ubuntu
+
+              PUBLIC_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
+
+              cd /home/ubuntu
+              git clone https://github.com/ashwal015/DevOpsWatch.git
+              cd DevOpsWatch
+
+              cat > .env << ENVEOF
+              DATABASE_URL=postgresql://postgres:${var.db_password}@db/devopswatch
+              SECRET_KEY=${var.secret_key}
+              ALLOWED_ORIGINS=http://$${PUBLIC_IP}:3000,http://localhost:3000,http://localhost:5173
+              API_URL=http://$${PUBLIC_IP}:8000
+              ENVEOF
+
+              chown -R ubuntu:ubuntu /home/ubuntu/DevOpsWatch
+              docker compose up --build -d
               EOF
 
   tags = {
