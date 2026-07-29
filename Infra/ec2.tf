@@ -32,6 +32,7 @@ resource "aws_instance" "app" {
 
               cat > .env << ENVEOF
               DATABASE_URL=postgresql://postgres:${var.db_password}@db/devopswatch
+              DB_PASSWORD=${var.db_password}
               SECRET_KEY=${var.secret_key}
               ALLOWED_ORIGINS=http://$${PUBLIC_IP}:3000,http://localhost:3000,http://localhost:5173
               API_URL=http://$${PUBLIC_IP}:8000
