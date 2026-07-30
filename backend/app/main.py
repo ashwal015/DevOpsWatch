@@ -81,4 +81,16 @@ def update_incident(incident_id: int, update: schemas.IncidentUpdate, db: Sessio
     db.commit()
     db.refresh(incident)
     return incident
+
+@app.get("/status")
+def get_status(db: Session = Depends(get_db)):
+    critical_open = db.query(models.Incident).filter(
+        models.Incident.severity == "critical",
+        models.Incident.status == "open"
+    ).count()
+
+    return {
+        "status": "down" if critical_open > 0 else "operational",
+        "open_critical_incidents": critical_open
+    }
     

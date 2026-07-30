@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api";
 
-function Dashboard() {
+function Dashboard({ onLogout }) {
     const [incidents, setIncidents] = useState([]);
     const [title, setTitle] = useState("");
     const [severity, setSeverity] = useState("low");
@@ -29,6 +29,7 @@ function Dashboard() {
 
     return (
         <div style={{ maxWidth: 600, margin: "40px auto" }}>
+            <button onClick={onLogout} style={{ float: "right" }}>Log out</button>
             <h2>Incidents</h2>
 
             <form onSubmit={handleCreate} style={{ marginBottom: 20 }}>
