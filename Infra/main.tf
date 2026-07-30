@@ -9,6 +9,12 @@ terraform {
       version = "~> 2.0"
     }
   }
+
+  backend "s3" {
+    bucket = "devopswatch-tfstate-aish"
+    key    = "devopswatch/terraform.tfstate"
+    region = "eu-central-1"
+  }
 }
 
 provider "aws" {
