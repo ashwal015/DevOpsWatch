@@ -29,7 +29,7 @@ function Dashboard({ onLogout }) {
 
     return (
         <div style={{ maxWidth: 600, margin: "40px auto" }}>
-            <button onClick={onLogout} style={{ float: "right" }}>Log out</button>
+
             <h2>Incidents</h2>
 
             <form onSubmit={handleCreate} style={{ marginBottom: 20 }}>
