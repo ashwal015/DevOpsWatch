@@ -37,3 +37,14 @@ class IncidentOut(BaseModel):
 
     class Config:
         from_attributes = True    
+        
+class IncidentUpdateCreate(BaseModel):
+    message: str
+
+class IncidentUpdateOut(BaseModel):
+    id: int
+    message: str
+    created_at: datetime
+
+    class Config:
+        from_attributes = True

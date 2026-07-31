@@ -82,6 +82,49 @@ def update_incident(incident_id: int, update: schemas.IncidentUpdate, db: Sessio
     db.refresh(incident)
     return incident
 
+@app.post("/incidents/{incident_id}/updates", response_model=schemas.IncidentUpdateOut)
+def add_update(
+    incident_id: int,
+    update: schemas.IncidentUpdateCreate,
+    db: Session = Depends(get_db),
+    user: models.User = Depends(auth.get_current_user)
+):
+    incident = db.query(models.Incident).filter(models.Incident.id == incident_id).first()
+    if not incident:
+        raise HTTPException(status_code=404, detail="Incident not found")
+
+    new_update = models.IncidentUpdate(incident_id=incident_id, message=update.message)
+    db.add(new_update)
+    db.commit()
+    db.refresh(new_update)
+    return new_update
+
+
+@app.get("/incidents/{incident_id}/updates", response_model=list[schemas.IncidentUpdateOut])
+def list_updates(
+    incident_id: int,
+    db: Session = Depends(get_db),
+    user: models.User = Depends(auth.get_current_user)
+):
+    return (
+        db.query(models.IncidentUpdate)
+        .filter(models.IncidentUpdate.incident_id == incident_id)
+        .order_by(models.IncidentUpdate.created_at)
+        .all()
+    )
+
+
+@app.get("/incidents/{incident_id}", response_model=schemas.IncidentOut)
+def get_incident(
+    incident_id: int,
+    db: Session = Depends(get_db),
+    user: models.User = Depends(auth.get_current_user)
+):
+    incident = db.query(models.Incident).filter(models.Incident.id == incident_id).first()
+    if not incident:
+        raise HTTPException(status_code=404, detail="Incident not found")
+    return incident
+
 @app.get("/status")
 def get_status(db: Session = Depends(get_db)):
     critical_open = db.query(models.Incident).filter(

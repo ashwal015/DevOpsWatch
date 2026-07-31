@@ -21,3 +21,11 @@ class Incident(Base):
     severity = Column(String(50), default="low")
     created_at = Column(DateTime, default=datetime.utcnow)
     owner_id = Column(Integer, ForeignKey("users.id"))
+
+class IncidentUpdate(Base):
+    __tablename__ = "incident_updates"
+
+    id = Column(Integer, primary_key=True, index=True)
+    incident_id = Column(Integer, ForeignKey("incidents.id"), nullable=False)
+    message = Column(Text, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow)

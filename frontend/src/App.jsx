@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import StatusPage from "./pages/StatusPage";
 import NavBar from "./components/NavBar";
+import IncidentDetail from "./pages/IncidentDetail";
 import { setAuthToken } from "./api";
 
 function App() {
@@ -35,6 +36,10 @@ function App() {
         <Route
           path="/dashboard"
           element={token ? <Dashboard onLogout={handleLogout} /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/incidents/:id"
+          element={token ? <IncidentDetail /> : <Navigate to="/login" />}
         />
         <Route path="*" element={<Navigate to={token ? "/dashboard" : "/login"} />} />
       </Routes>
