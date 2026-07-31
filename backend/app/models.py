@@ -20,6 +20,7 @@ class Incident(Base):
     status = Column(String(50), default="open")
     severity = Column(String(50), default="low")
     created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     owner_id = Column(Integer, ForeignKey("users.id"))
 
 class IncidentUpdate(Base):

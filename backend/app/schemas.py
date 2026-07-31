@@ -34,10 +34,11 @@ class IncidentOut(BaseModel):
     status: str
     severity: str
     created_at: datetime
+    updated_at: datetime
 
     class Config:
         from_attributes = True    
-        
+
 class IncidentUpdateCreate(BaseModel):
     message: str
 
