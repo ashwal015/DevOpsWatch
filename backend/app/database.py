@@ -5,6 +5,8 @@ import os
 from dotenv import load_dotenv  
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker , declarative_base
+from sqlalchemy.exc import OperationalError
+from .metrics import report_db_failure
 
 #Load variables from .env
 load_dotenv()
