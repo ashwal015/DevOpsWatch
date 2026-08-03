@@ -4,7 +4,8 @@ import api from "../api";
 import { colors, statusStyles, severityStyles, card } from "../theme";
 
 function timeAgo(dateStr) {
-    const diff = Math.floor((Date.now() - new Date(dateStr)) / 1000);
+    const utcDateStr = dateStr.endsWith("Z") ? dateStr : dateStr + "Z";
+    const diff = Math.floor((Date.now() - new Date(utcDateStr)) / 1000);
     if (diff < 60) return `${diff}s ago`;
     if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
     if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
@@ -225,7 +226,7 @@ function Dashboard() {
                                                 {inc.severity.toUpperCase()}
                                             </span>
                                             <span style={{ fontSize: 12, color: colors.textMuted }}>
-                                                {inc.status === "closed" ? "Resolved" : "Last updated"} {timeAgo(inc.created_at)}
+                                                {inc.status === "closed" ? "Resolved" : "Last updated"} {timeAgo(inc.updated_at)}
                                             </span>
                                         </div>
                                     </div>
