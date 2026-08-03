@@ -26,6 +26,8 @@ function Dashboard() {
 
     useEffect(() => {
         loadIncidents();
+        const interval = setInterval(loadIncidents, 10000);
+        return () => clearInterval(interval);
     }, []);
 
     async function handleCreate(e) {
