@@ -27,6 +27,9 @@ def get_db():
     db = SessionLocal()
     try:
         yield db
+    except OperationalError:
+        report_db_failure()
+        raise
     finally:
         db.close()
 
