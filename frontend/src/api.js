@@ -4,10 +4,16 @@ const api = axios.create({
     baseURL: window.__API_URL__ || "http://localhost:8000",
 });
 
-export function setAuthToken(token) {
+api.interceptors.request.use((config) => {
+    const token = localStorage.getItem("token");
     if (token) {
-        api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    } else {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+});
+
+export function setAuthToken(token) {
+    if (!token) {
         delete api.defaults.headers.common["Authorization"];
     }
 }
