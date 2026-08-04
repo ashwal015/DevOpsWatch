@@ -37,7 +37,20 @@ function IncidentDetail() {
             <h2 style={{ marginTop: 10 }}>{incident.title}</h2>
             <p style={{ color: "#888" }}>
                 Severity: <strong>{incident.severity}</strong> &nbsp;|&nbsp;
-                Status: <strong>{incident.status}</strong> &nbsp;|&nbsp;
+                Status:{" "}
+                <select
+                    value={incident.status}
+                    onChange={async (e) => {
+                        await api.patch(`/incidents/${id}`, { status: e.target.value });
+                        loadData();
+                    }}
+                    style={{ marginLeft: 4, marginRight: 4 }}
+                >
+                    <option value="open">Open</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="closed">Closed</option>
+                </select>
+                &nbsp;|&nbsp;
                 Opened: {new Date(incident.created_at).toLocaleString()}
             </p>
             {incident.description && <p>{incident.description}</p>}
