@@ -43,29 +43,76 @@ The entire system — VPC, EC2, IAM, CloudWatch, SNS, Lambda — is defined in T
 > Space reserved — two architecture diagrams (CI/CD deployment pipeline, and the automated incident-creation pipeline) were built during development. Insert them here.
 
 ```
-[ Architecture diagram 1: deployment pipeline — placeholder ]
+c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\devopswatch_cicd_deployment_pipeline.png
 
-[ Architecture diagram 2: incident automation pipeline — placeholder ]
+c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\devopswatch_incident_automation_pipeline.png
+
+c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\devopswatch_full_architecture_overview.png
 ```
 
 ## Screenshots
 
-> Space reserved — screenshots to capture after the next `terraform apply`:
+### API & access
 
-1. **Dashboard** — incident list with mixed severities, showing the overview panel (open / critical / resolved counts)
-2. **Incident detail page** — an incident with a postmortem timeline containing at least one update
-3. **Status page (green)** — `/status` showing "All Systems Operational"
-4. **Status page (red)** — `/status` showing "Service Disruption" with an open critical incident
-5. **Swagger API docs** — `/docs`, expanded to show the `/incidents` and `/login` routes
-6. **CloudWatch alarm firing** — the AWS Console showing an alarm in `ALARM` state
-7. **Auto-created incident** — the dashboard incident that was created automatically by Lambda (title matching a CloudWatch alarm name, e.g. `devopswatch-cpu-critical`)
-
+**Swagger API docs** — `/docs`, `POST /login` and `POST /incidents` expanded
 ```
-[ Screenshot 1 — placeholder ]
+c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\01_swagger_docs.png
+```
 
-[ Screenshot 2 — placeholder ]
+**Registration page** — `/register`
+```
+c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\03_register_page.png
+```
 
-[ Screenshot 3 — placeholder ]
+### Public status page
+
+**Status page — All Systems Operational**
+```
+c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\02_status_page_green.png
+```
+
+**Status page — Service Disruption** (open critical incident)
+```
+c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\09_status_page_red.png
+```
+
+### Dashboard
+
+**Dashboard — DB-connection incident auto-created**
+```
+c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\04_dashboard_db_incident.png
+```
+
+**Dashboard — full mix of incidents** (all severities, live automation results)
+```
+c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\08_dashboard_full_mixed.png
+```
+
+**Dashboard — with resolved incidents** (showing the "Resolved" counter and "Write postmortem" flow)
+```
+c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\11_dashboard_with_resolved.png
+```
+
+**Incident detail page — postmortem timeline**
+```
+c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\10_incident_detail_timeline.png
+```
+
+### Proof of automation (CloudWatch → SNS → Lambda)
+
+**CloudWatch alarm in ALARM state**
+```
+c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\07_cloudwatch_alarm_state.png
+```
+
+**SNS email notification** — the actual alert that arrived
+```
+c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\05_email_notification.png
+```
+
+**Lambda logs — successful incident creation**
+```
+c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\06_lambda_logs_success.png
 ```
 
 ## Tech Stack
