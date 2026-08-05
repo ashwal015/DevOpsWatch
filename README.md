@@ -40,80 +40,77 @@ The entire system — VPC, EC2, IAM, CloudWatch, SNS, Lambda — is defined in T
 
 ## Architecture
 
-> Space reserved — two architecture diagrams (CI/CD deployment pipeline, and the automated incident-creation pipeline) were built during development. Insert them here.
+![Swagger API Docs](docs/screenshots/devopswatch_cicd_deployment_pipeline.png)
 
-```
-c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\devopswatch_cicd_deployment_pipeline.png
+![Swagger API Docs](docs/screenshots/devopswatch_incident_automation_pipeline.png)
 
-c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\devopswatch_incident_automation_pipeline.png
+![Swagger API Docs](docs/screenshots/devopswatch_full_architecture_overview.png)
 
-c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\devopswatch_full_architecture_overview.png
-```
 
 ## Screenshots
 
 ### API & access
 
 **Swagger API docs** — `/docs`, `POST /login` and `POST /incidents` expanded
-```
-c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\01_swagger_docs.png
-```
+
+![Swagger API Docs](docs/screenshots/01_swagger_docs.png)
+
 
 **Registration page** — `/register`
-```
-c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\03_register_page.png
-```
+
+![Swagger API Docs](docs/screenshots/03_register_page.png)
+
 
 ### Public status page
 
 **Status page — All Systems Operational**
-```
-c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\02_status_page_green.png
-```
+
+![Swagger API Docs](docs/screenshots/02_status_page_green.png)
+
 
 **Status page — Service Disruption** (open critical incident)
-```
-c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\09_status_page_red.png
-```
+
+![Swagger API Docs](docs/screenshots/09_status_page_red.png)
+
 
 ### Dashboard
 
 **Dashboard — DB-connection incident auto-created**
-```
-c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\04_dashboard_db_incident.png
-```
+
+![Swagger API Docs](docs/screenshots/04_dashboard_db_incident.png)
+
 
 **Dashboard — full mix of incidents** (all severities, live automation results)
-```
-c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\08_dashboard_full_mixed.png
-```
+
+![Swagger API Docs](docs/screenshots/08_dashboard_full_mixed.png)
+
 
 **Dashboard — with resolved incidents** (showing the "Resolved" counter and "Write postmortem" flow)
-```
-c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\11_dashboard_with_resolved.png
-```
+
+![Swagger API Docs](docs/screenshots/11_dashboard_with_resolved.png)
+
 
 **Incident detail page — postmortem timeline**
-```
-c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\10_incident_detail_timeline.png
-```
+
+![Swagger API Docs](docs/screenshots/10_incident_detail_timeline.png)
+
 
 ### Proof of automation (CloudWatch → SNS → Lambda)
 
 **CloudWatch alarm in ALARM state**
-```
-c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\07_cloudwatch_alarm_state.png
-```
+
+![Swagger API Docs](docs/screenshots/07_cloudwatch_alarm_state.png)
+
 
 **SNS email notification** — the actual alert that arrived
-```
-c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\05_email_notification.png
-```
+
+![Swagger API Docs](docs/screenshots/05_email_notification.png)
+
 
 **Lambda logs — successful incident creation**
-```
-c:\Users\ramda\OneDrive\Desktop\Project_Info_Devops\New\06_lambda_logs_success.png
-```
+
+![Swagger API Docs](docs/screenshots/06_lambda_logs_success.png)
+
 
 ## Tech Stack
 
