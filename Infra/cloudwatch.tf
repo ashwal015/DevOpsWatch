@@ -75,7 +75,7 @@ resource "aws_cloudwatch_metric_alarm" "db_connection_failures" {
   evaluation_periods  = 1
   metric_name         = "DBConnectionFailures"
   namespace           = "DevOpsWatch"
-  period              = 30
+  period              = 10
   statistic           = "Sum"
   threshold           = 1
   alarm_description   = "critical severity: backend cannot connect to the database"
